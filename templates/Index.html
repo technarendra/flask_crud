@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Crud application</title>
+	<link href="{{url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+	<link href="{{url_for('static',filename='css/custom.css')}}" rel="stylesheet">
+</head>
+<body>
+	{% block body %}
+	<div class="container" >
+		<div class="row">
+			<div class="well text-center col-sm-12">
+				<h1>Python Flask Crud app</h1>
+			</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					{%with messages = get_flashed_messages()%}
+
+    				{%if messages%}
+
+    				{% for message in messages %}
+    				{{message}}
+
+
+    				{%endfor%}
+    				{%endif%}
+    				{%endwith%}
+
+					<h2>Student List <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#mymodal">Add Student Data</button></h2>
+
+				    
+
+
+					<table class="table table-striped">
+						<tr>
+							<th>Serial</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Phone</th>
+							<th>Action</th>
+						</tr>
+
+
+                {% for row in students %}
+                <tr>
+                    <td>{{row.0}}</td>
+                    <td>{{row.1}}</td>
+                    <td>{{row.2}}</td>
+                    <td>{{row.3}}</td>
+                    <td>
+
+
+						<!-- 
+						<tr>
+							<td>01</td>
+							<td>Narendra</td>
+							<td>narendra@gph.com</td>
+							<td>9827345678</td> -->
+							<td><a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit">Edit </a>
+								<a href="" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete?')"> Delete</a></td>
+						</tr>
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+
+
+
+
+			<div id="modaledit" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<butto type="button" class="close" data-dismiss="modal">&times,</butto>
+							<h4 class="modal-title">Please Update Data</h4>
+						</div>
+						<div>
+						<div class="modal-body"></div>
+						<form action="" method="POST">
+							<div class="form-group">
+								<label>Name:</label>
+								<input type="text" class="form-control" name="name" value="Narendra" />
+							</div>
+							<div class="form-group">
+								<label>Email:</label> 
+								<input type="text" class="form-control" name="email" value="indore@gmail.com" />
+							</div>
+							<div class="form-group">
+								<label>Phone:</label> 
+								<input type="text" class="form-control" name="email" value="9897878545" />
+							</div>
+							<div class="form-group">
+								<button class="btn btn-primary" type="submit">Update Data:</button>			
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+				
+				</div>
+
+			</div>
+
+
+			<div id="mymodal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<butto type="button" class="close" data-dismiss="modal">&times,</butto>
+							<h4 class="modal-title">Please Insert Data</h4>
+						</div>
+					<div>
+						<div class="modal-body"></div>
+						<form action="{{url_for('insert')}}" method="POST">
+							<div class="form-group">
+								<label>Name:</label>
+								<input type="text" class="form-control" name="name" required="1" />
+							</div>
+							<div class="form-group">
+								<label>Email:</label> 
+								<input type="text" class="form-control" name="email" required="1"/>
+							</div>
+							<div class="form-group">
+								<label>Phone:</label> 
+								<input type="text" class="form-control" name="phone" required="1"/>
+							</div>
+							<div class="form-group">
+								<button class="btn btn-primary" type="submit">Insert Data:</button>			
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+		
+		
+		{% endblock %}
+
+
+
+
+			<div class="bg-color col-sm-12">
+				<div class="col-sm-6">
+					<h3>Welcome</h3>
+				</div>
+				<div class="col-sm-6">
+					<span class="pull-right"> like us on wwww.html.com </span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script type="text/javascript" src="{{url_for('static',filename='js/jquery-3.3.1.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+
+
+
+
+
+
+
+</html>
